@@ -44,9 +44,10 @@ let routeListeners = []
 let _routerInitialized = false
 
 function appBase() {
-  const p = window.location.pathname
-  const idx = p.search(/\/app(\.html|\/)/)
-  return idx === -1 ? '' : p.substring(0, idx)
+  // Repo base path: first non-empty path segment for project sites,
+  // empty for user sites (e.g. username.github.io).
+  const segs = window.location.pathname.split('/').filter(Boolean)
+  return segs.length > 0 ? '/' + segs[0] : ''
 }
 
 function runCleanups() {
