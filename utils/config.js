@@ -6,7 +6,7 @@ export const CFG = {
   waBridgeUrl: null, serverDownloadUrl: null,
   smtpHost: 'smtpout.secureserver.net', smtpPort: 465,
   srFolderId: null, activitiesFolderId: null,
-  srSpreadsheetId: null, srSheetName: 'SR Register', activitySheetName: 'Activity Log',
+  srSpreadsheetId: null, srSheetName: 'Service Requests', activitySheetName: 'Activity Log',
 }
 
 export async function initializeConfig() {
@@ -22,7 +22,7 @@ export async function initializeConfig() {
     CFG.srFolderId = c.DRIVE_SR_FOLDER_ID || null
     CFG.activitiesFolderId = c.DRIVE_ACTIVITIES_FOLDER_ID || null
     CFG.srSpreadsheetId = c.DRIVE_SPREADSHEET_ID || null
-    CFG.srSheetName = c.DRIVE_SR_SHEET_NAME || 'SR Register'
+    CFG.srSheetName = c.DRIVE_SR_SHEET_NAME || 'Service Requests'
     CFG.activitySheetName = c.DRIVE_ACTIVITY_SHEET_NAME || 'Activity Log'
     if (!CFG.supabaseUrl || !CFG.supabaseAnon) throw new Error('Missing Supabase config')
     return true

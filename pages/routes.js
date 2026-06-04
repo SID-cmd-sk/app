@@ -343,9 +343,9 @@ export default {
         window._refreshPreview = async () => {
           const mockSR = {
             sr_number: 'SR-2026-1001', customer_name: 'John Doe', customer_email: 'john.doe@example.com',
-            owner_name: 'Sidharth Kumar', account: 'Acme Corp', route_name: 'IT Support Route',
+            owner_name: 'Operations Lead', account: 'Acme Corp', route_name: 'IT Support Route',
             issue_type: 'Technical Support', status: 'In Progress', priority: 'High',
-            resolution: 'Rebooted server.', company_name: 'SKS 3D',
+            resolution: 'Rebooted server.', company_name: 'Workflow',
           }
           const tplId = document.getElementById('s-email-tpl')?.value
           let subj = document.getElementById('s-email-subj')?.value || ''
@@ -363,8 +363,8 @@ export default {
           document.querySelectorAll('.s-rec-chk').forEach(c => {
             if (c.checked) {
               if (c.value === 'customer') recs.push(mockSR.customer_email)
-              else if (c.value === 'owner') recs.push('owner@sks3d.com')
-              else recs.push('creator@sks3d.com')
+              else if (c.value === 'owner') recs.push('owner@workflow.app')
+              else recs.push('creator@workflow.app')
             }
           })
           const custRec = document.getElementById('s-custom-rec')?.value?.trim()

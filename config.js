@@ -4,9 +4,9 @@ window.APP_CONFIG = {
 
   // Fallback defaults — real values from Settings table override these at runtime.
   WA_BRIDGE_URL:         'http://localhost:3001',
-  SERVER_DOWNLOAD_URL:   'https://github.com/SID-cmd-sk/sr/releases/download/v1.0.0/sr-server.zip',
+  SERVER_DOWNLOAD_URL:   'https://github.com/workflow-app/relay/releases/download/v1.0.0/wf-relay.zip',
   APPS_SCRIPT_URL:       'https://script.google.com/macros/s/AKfycby0QMUhOBk0hwYed1dmTIEPPNwdyy-MCM9DD3RlkkLPtdqJMdZbLqKFzFI2zeBzixEPeQ/exec',
-  APPS_SCRIPT_TOKEN:     'SR_PLATFORM_2026_SECRET',
+  APPS_SCRIPT_TOKEN:     'WF_2026_SECRET',
   DRIVE_SR_FOLDER_ID:    '1ZhC-rDMoPRnKkK3OVDT3_eC_A5hBSahV',
   DRIVE_ACTIVITIES_FOLDER_ID: '1ZhC-rDMoPRnKkK3OVDT3_eC_A5hBSahV',
   DRIVE_SPREADSHEET_ID:  '10k6weyGqYVEsUNf4DUe1fFGrBaB2sfOBIskhn2pFWGQ',

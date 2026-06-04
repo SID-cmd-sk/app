@@ -1,4 +1,4 @@
-const ALLOWED_ORIGINS = ["https://sid-cmd-sk.github.io"];
+const ALLOWED_ORIGINS = ["https://workflow.app", "https://app.workflow.app"];
 
 function corsHeaders(origin: string | null) {
   const allow = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
@@ -42,7 +42,7 @@ async function sendViaTCP(params: {
   };
 
   await expect('220');
-  await send(`EHLO sr-platform`);
+  await send(`EHLO workflow`);
   let ehloResp = '';
   while (true) {
     const line = await readLine();

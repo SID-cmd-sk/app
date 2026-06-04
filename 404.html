@@ -2,33 +2,48 @@
 <html lang="en"><head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="theme-color" content="#0a0d14"/>
+<title>Workflow</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236366F1'/%3E%3Cpath d='M9 16l5 5 9-10' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"/>
 <script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<title>SR Platform</title>
 <style>
-:root,[data-theme="dark"] { --bg:#060d1a; --card-bg:rgba(18,25,46,.85); --border:rgba(255,255,255,.06); --text-1:#F0F4FF; --text-2:#8B95B0; --accent:#3B82F6; --accent-h:#2563EB }
-[data-theme="light"] { --bg:#e8ecf1; --card-bg:rgba(240,243,248,.92); --border:rgba(0,0,0,.08); --text-1:#1a202c; --text-2:#4a5568; --accent:#6366f1; --accent-h:#4f46e5 }
-body { margin:0; background:var(--bg); color:var(--text-1); font-family:'Inter',system-ui,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; text-align:center; -webkit-font-smoothing:antialiased }
-.card { background:var(--card-bg); border:1px solid var(--border); border-radius:20px; padding:40px; max-width:420px; box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03) inset; backdrop-filter:blur(24px); animation:fadeInUp .4s ease both }
-h2 { margin:0 0 8px; font-family:'Sora',sans-serif; font-size:1.2rem; font-weight:600; letter-spacing:-.02em }
+:root,[data-theme="dark"] { --bg:#0a0d14; --card-bg:rgba(22,27,44,.85); --border:rgba(255,255,255,0.08); --text-1:#F1F4FB; --text-2:#8A93AB; --accent:#6366F1; --accent-h:#4F46E5; --accent-2:#14B8A6 }
+[data-theme="light"] { --bg:#f4f6fa; --card-bg:rgba(255,255,255,.92); --border:rgba(15,23,42,0.10); --text-1:#0f172a; --text-2:#4b5563; --accent:#4f46e5; --accent-h:#4338ca; --accent-2:#0d9488 }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:'Inter',system-ui,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:20px; text-align:center; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; position:relative; overflow:hidden }
+body::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 30% 30%, rgba(99,102,241,0.10) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 70% 70%, rgba(20,184,166,0.06) 0%, transparent 60%); pointer-events:none }
+[data-theme="light"] body { background: radial-gradient(ellipse at 20% 50%, #e0e6f0 0%, #f4f6fa 100%) }
+.card { background:var(--card-bg); border:1px solid var(--border); border-radius:20px; padding:40px; max-width:420px; box-shadow:0 24px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.03) inset; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); animation:fadeInUp .5s var(--ease) both; position:relative; z-index:1 }
+.brand-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:24px }
+.brand-icon { width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(99,102,241,0.30); position:relative; overflow:hidden }
+.brand-icon::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.18), transparent 50%); pointer-events:none }
+.brand-text { font-family:'Sora',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:-0.02em; color:var(--text-1) }
+h2 { margin:0 0 8px; font-family:'Sora',sans-serif; font-size:1.2rem; font-weight:600; letter-spacing:-.025em; color:var(--text-1) }
 p { color:var(--text-2); font-size:.8rem; margin:0 0 20px; line-height:1.6 }
-.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:8px; font-size:.85rem; font-weight:600; cursor:pointer; background:var(--accent); color:#fff; border:none; text-decoration:none; transition:all .2s ease }
-.btn:hover { background:var(--accent-h); transform:translateY(-1px) }
-.spinner { width:18px; height:18px; border:2px solid rgba(255,255,255,.2); border-top-color:#fff; border-radius:50%; animation:spin .65s linear infinite; display:inline-block; margin-bottom:20px }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:9px; font-size:.85rem; font-weight:600; cursor:pointer; background:var(--accent); color:#fff; border:none; text-decoration:none; transition:all .2s var(--ease) }
+.btn:hover { background:var(--accent-h); transform:translateY(-1px); box-shadow:0 6px 20px rgba(99,102,241,0.35) }
+.spinner { width:20px; height:20px; border:2px solid rgba(255,255,255,0.2); border-top-color:var(--accent); border-radius:50%; animation:spin .65s linear infinite; display:inline-block; margin-bottom:20px }
+:root { --ease: cubic-bezier(0.16, 1, 0.3, 1) }
 @keyframes spin { to{transform:rotate(360deg)} }
 @keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 @media (max-width:600px) {
-  .card { padding:24px 16px; margin:0 10px }
+  .card { padding:28px 20px; margin:0 10px }
   h2 { font-size:1rem }
   p { font-size:.72rem }
 }
 </style>
 </head><body>
-<div class="card" style="animation:fadeInUp .5s ease both">
+<div class="card" style="animation:fadeInUp .55s var(--ease) both">
+  <div class="brand-row">
+    <div class="brand-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="brand-text">Workflow</span>
+  </div>
   <div class="spinner"></div>
-  <h2>Redirecting to SR Platform</h2>
-  <p>Please wait while we restore your session</p>
+  <h2>Restoring your session</h2>
+  <p>Please wait while we sign you in</p>
 </div>
 <script>
 ;(function() {
@@ -36,7 +51,7 @@ p { color:var(--text-2); font-size:.8rem; margin:0 0 20px; line-height:1.6 }
   document.addEventListener('keydown', e => {
     if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) e.preventDefault()
   })
-  const t = localStorage.getItem('sr-theme') || 'dark'
+  const t = localStorage.getItem('wf-theme') || 'dark'
   document.documentElement.setAttribute('data-theme', t)
 })()
 ;(async function() {
@@ -49,7 +64,7 @@ p { color:var(--text-2); font-size:.8rem; margin:0 0 20px; line-height:1.6 }
   const routeMap = {'/app/dashboard':'dashboard','/app/sr':'sr','/app/sr-new':'sr-new','/app/sr-detail':'sr-detail','/app/sr-edit':'sr-edit','/app/activities':'activities','/app/templates':'templates','/app/routes':'routes','/app/whatsapp':'whatsapp','/app/users':'users','/app/reports':'reports','/app/settings':'settings','/app/create':'create'}
   let page = 'dashboard'
   for (const [rp, p] of Object.entries(routeMap)) { if (routePath === rp) { page = p; break } }
-  sessionStorage.setItem('sr_restore', JSON.stringify({ page, params: searchParams }))
+  sessionStorage.setItem('wf_restore', JSON.stringify({ page, params: searchParams }))
   try {
     if (window.APP_CONFIG && window.APP_CONFIG.SUPABASE_URL) {
       const { createClient } = window.supabase
@@ -66,4 +81,5 @@ p { color:var(--text-2); font-size:.8rem; margin:0 0 20px; line-height:1.6 }
   window.location.href = basePath + '/login.html'
 })()
 </script>
-</body></html>
+</body>
+</html>

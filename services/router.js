@@ -108,9 +108,9 @@ export function initRouter() {
   _routerInitialized = true
 
   const base = appBase()
-  const savedRoute = sessionStorage.getItem('sr_restore')
+  const savedRoute = sessionStorage.getItem('wf_restore')
   if (savedRoute) {
-    sessionStorage.removeItem('sr_restore')
+    sessionStorage.removeItem('wf_restore')
     try {
       const restore = JSON.parse(savedRoute)
       const qs = Object.keys(restore.params).length ? '?' + new URLSearchParams(restore.params).toString() : ''

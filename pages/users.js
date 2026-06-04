@@ -107,17 +107,17 @@ async function sendRemovalEmail(deletedEmail, deletedName) {
     password: profile.smtp_password,
     to: deletedEmail,
     from: profile.smtp_email,
-    subject: 'Your account has been removed from the SR Platform',
+    subject: 'Your account has been removed from Workflow',
     body: `Hello ${deletedName || deletedEmail},
 
-Your account on the SR Platform has been removed by an administrator.
+Your account on Workflow has been removed by an administrator.
 
-You will no longer be able to log in to the platform.
+You will no longer be able to sign in to the platform.
 
 If you believe this was done in error, please contact your administrator.
 
 Best regards,
-${profile.name || 'SR Platform Admin'}`,
+${profile.name || 'Workflow Admin'}`,
   })
 }
 
@@ -168,7 +168,7 @@ window.openInviteUser = () => {
       <div class="form-row">
         <div class="form-group">
           <label class="form-label req">Email</label>
-          <input class="form-input" id="inv-email" type="email" placeholder="user@sks3d.com"/>
+          <input class="form-input" id="inv-email" type="email" placeholder="user@workflow.app"/>
         </div>
         <div class="form-group">
           <label class="form-label req">Full Name</label>
@@ -202,17 +202,17 @@ async function sendWelcomeEmail(newEmail, newName, newPw) {
   if (!me) throw new Error('Not logged in')
   const { data: profile } = await sb.from('users').select('smtp_email,smtp_password,name').eq('id', me.id).single()
   if (!profile?.smtp_email || !profile?.smtp_password) throw new Error('Your SMTP email is not configured. Go to Settings → My Email first.')
-  const company = 'SKS 3D'
+  const company = 'Workflow'
   const subject = `Welcome to ${company} — Your Account Credentials`
   const body = `Hello ${newName},
 
-Your account has been created on the SR Platform.
+Your account has been created on Workflow.
 
-Here are your login credentials:
+Here are your sign-in credentials:
   Email    : ${newEmail}
   Password : ${newPw}
 
-Login at: https://sid-cmd-sk.github.io/sr/app.html
+Sign in at the Workflow sign-in page provided by your administrator.
 
 For any questions or to change your password, please contact ${profile.name}.
 
